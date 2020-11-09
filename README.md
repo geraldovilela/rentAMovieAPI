@@ -1,3 +1,3 @@
-# backend Typescript Template
+# rentAMovieAPI
 
-Criação de Template basico para criação de backend utilizando TS.
+Backend para um serviço de locação de filmes.
