@@ -1,12 +1,6 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
+import { getCustomRepository, Like } from 'typeorm';
 import MoviesRepository from '../repositories/MoviesRepository';
-
-interface Movies {
-  id: string;
-  title: string;
-  director: string;
-}
 
 class MoviesController {
   async create(request: Request, response: Response) {
@@ -62,8 +56,24 @@ class MoviesController {
       await moviesRepository.delete(id);
       return response.status(200).json({message: 'sucesss'});
     } catch (error) {
-      response.send(error.message)
+      response.send(error.message);
     }
+  }
+
+  async findBytitle (request: Request, response: Response) {
+    try {
+      const {title} = request.query;
+
+      const moviesRepository = getCustomRepository(MoviesRepository);
+
+      const data = await moviesRepository.find({title: Like(`%${title}%`)})
+
+      return response.json(data);
+
+    } catch (error){
+      response.send(error.message);
+    }
+
   }
 
 }
