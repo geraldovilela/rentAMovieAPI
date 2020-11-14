@@ -1,19 +1,17 @@
 import { Request, Response } from 'express';
 import { getCustomRepository, Like } from 'typeorm';
 import MoviesRepository from '../repositories/MoviesRepository';
+import CreateMovieService from '../services/CreateMovieService';
 
 class MoviesController {
   async create(request: Request, response: Response) {
     try {
+      const createMovieService = new CreateMovieService();
       const { title, director } = request.body;
-      const moviesRepository = getCustomRepository(MoviesRepository);
-      const newMovie = moviesRepository.create({ title, director });
-
-      await moviesRepository.save(newMovie);
-
-      return response.status(200).json(newMovie);
+      const movie = await createMovieService.execute({title, director});
+      return response.status(200).json(movie);
     } catch (error) {
-      return response.status(403).send(error.message)
+      return response.status(403).send(error.message);
     }
   }
 

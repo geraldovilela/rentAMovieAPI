@@ -1,26 +1,32 @@
-import {Column, Entity, ManyToOne, OneToOne, PrimaryColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn} from 'typeorm';
 import Users from './UserModels';
 import Movies from './MoviesModel';
 
 
-@Entity('RentedMovies')
+@Entity('Rentedmovies')
 class RentedMovies {
   @PrimaryColumn("uuid")
   id: string;
 
-  @Column()
-  @ManyToOne(()=>Users)
+  @Column("uuid")
   clientId: string;
 
-  @Column()
-  @OneToOne(()=>Movies)
+  @ManyToOne(()=>Users)
+  @JoinColumn({name:'clientId'})
+  client: Users;
+
+  @Column("uuid")
   movieId:string;
+
+  @OneToOne(()=>Movies)
+  @JoinColumn({name:'movieId'})
+  movie:Movies;
 
   @Column('timestamp')
   rentDate: Date;
 
   @Column('boolean')
-  rentedmovies:boolean;
+  returnedFilm:boolean;
 
 }
 

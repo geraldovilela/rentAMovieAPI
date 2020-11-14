@@ -1,5 +1,5 @@
 import { hash } from 'bcryptjs';
-import { getCustomRepository, getRepository } from 'typeorm';
+import { getCustomRepository } from 'typeorm';
 import { v4 } from 'uuid';
 
 

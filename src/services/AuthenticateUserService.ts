@@ -9,8 +9,16 @@ interface Request{
   password: string;
 }
 
+interface User {
+  id:string;
+  name:string;
+  email:string;
+  password?:string;
+
+}
+
 interface Response {
-  user: Users;
+  user: User;
   token:string;
 }
 
@@ -32,10 +40,10 @@ class AuthenticateUserService{
 
     const {secret, expiresIn} = AuthConfig.jwt;
 
-    const token = sign({name: user.name, email: user.email},
+    const token = sign({name: user.name, email: user.email, id:user.id},
                         secret,
-                        {subject:user.email,expiresIn})
-
+                        {subject:user.id,expiresIn})
+      console.log(token);
     return {
       user,
       token
