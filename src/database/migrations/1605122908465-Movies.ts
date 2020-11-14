@@ -9,11 +9,8 @@ export default class Movies1605122908465 implements MigrationInterface {
           columns:[
             {
               name:'id',
-              type:'int',
+              type:'varchar',
               isPrimary: true,
-              isGenerated:true,
-              generationStrategy:"increment"
-
             },
             {
               name: 'title',

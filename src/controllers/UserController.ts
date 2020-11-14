@@ -3,24 +3,14 @@ import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
 import UsersRepository from '../repositories/UsersRepository';
-
-
+import CreateUserService from '../services/CreateUserService';
 
 class UserController {
   async create(request: Request, response: Response) {
     try {
       const { name, email, password } = request.body;
-
-      const hashedPassword = await hash(password, 10);
-
-      const userRepository = getCustomRepository(UsersRepository);
-      const newUser = userRepository.create({ name, email, password:hashedPassword });
-
-
-      await userRepository.save(newUser);
-
-      delete newUser.password;
-
+      const userService = new CreateUserService()
+      const newUser = await userService.execute({ email, name, password });
       return response.status(200).json(newUser);
     } catch (error) {
       return response.send(error.message);

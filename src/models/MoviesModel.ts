@@ -3,7 +3,7 @@ import {Column, Entity, PrimaryColumn} from 'typeorm';
 
 @Entity('Movies')
 class Movies {
-  @PrimaryColumn("int")
+  @PrimaryColumn("uuid")
   id: string;
 
   @Column()
