@@ -1,0 +1,43 @@
+DOC DAS ROTAS DA API.
+
+/user
+POST -  Metodo para cadastro do usuario! - retona o cadastro do usuario caso tenha sucesso.
+json de exemplo:
+{
+	"email":"geraldo19@geraldo.com.br",
+	"name":"Geraldo Oliveira Vilela",
+	"password":"extremelyHardP@ssword"
+}
+
+/session
+POST - Metodo para Login do usuario com autenticação JWT! - retorna o user e o token caso tenha sucesso.
+json de exemplo:
+{
+	"email":"geraldo19@geraldo.com.br",
+	"password":"extremelyHardP@ssword"
+}
+
+/movie
+POST - Metodo para cadastro de um Filme/Movie na base de dados! - retorna o dados do filme e o uuid caso tenha sucesso.
+json de exemplo:
+{
+	"title":"The Lord of the Rings: The Fellowship of the Ring",
+	"director":"Peter Jackson"
+}
+
+GET - Metodo para busca de todos os Filmes/Movies cadastrados na base de dados! - retorna um json com todos os objetos(Filmes/Movies)
+
+/movie/search?title=":"
+GET - Metodo para busca de um Filme/Movie com base no titulo, a busca e feita de forma não exata ou seja(apenas uma palavra já trara o filme;)
+utilizando Query Parms:
+  search?title=Lord%20of%20the
+
+/movie/:id
+PUT - Metodo para atualização de alguma informação de um filme passando o ID; - retorna os dados atualizados em caso de sucesso.
+json de exemplo:
+{
+	"title":"Longas tranças de um carreca",
+	"director":"Kentin Taturana"
+}
+
+DELETE - Metodo para exclusão de um registro passando o ID.

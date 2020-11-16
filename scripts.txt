@@ -1,0 +1,34 @@
+CREATE DATABASE `locadora`;
+use locadora;
+CREATE TABLE `users` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `movies` (
+  `id` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `director` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `rentedmovies` (
+  `id` varchar(255) NOT NULL,
+  `movieId` varchar(255) NOT NULL,
+  `clientId` varchar(255) NOT NULL,
+  `rentDate` timestamp NOT NULL,
+  `returnedFilm` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_397d680a239df8a94959baf9dcf` (`clientId`),
+  CONSTRAINT `FK_397d680a239df8a94959baf9dcf` FOREIGN KEY (`clientId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `locadora`.`movies` (`id`, `title`, `director`) VALUES ('11ef3304-4efa-4135-8ded-a886f43ea335', 'TITULO TESTE', 'Diretor Teste');
+INSERT INTO `locadora`.`movies` (`id`, `title`, `director`) VALUES ('24bf54ef-241b-40dd-9479-4b53f66a5f80', 'Moviemove', 'Kentin TArantulas');
+INSERT INTO `locadora`.`movies` (`id`, `title`, `director`) VALUES ('832cfd8f-21a7-4cb8-a419-062828d87e85', 'Poeira em alto mar', 'Ray Charles');
+INSERT INTO `locadora`.`movies` (`id`, `title`, `director`) VALUES ('b6af2ec0-09bd-4624-b46a-d8310d7946d2', 'A Volta dos que não foram', 'Zordom');
+INSERT INTO `locadora`.`movies` (`id`, `title`, `director`) VALUES ('fd935613-9b2f-4944-97b9-2328020f04fb', 'Longas Tranças de um Careca', 'Kentin TArantulas');
+
