@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { getCustomRepository, ObjectID } from 'typeorm';
 import RentedMovies from '../models/RentModels';
 import RentRepository from '../repositories/rentRepository';
